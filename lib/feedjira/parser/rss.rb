@@ -9,6 +9,7 @@ module Feedjira
       element :title
       element :description
       element :link, :as => :url
+      element :image
       elements :item, :as => :entries, :class => RSSEntry
       elements :"atom:link", :as => :hubs, :value => :href, :with => {:rel => "hub"}
 
