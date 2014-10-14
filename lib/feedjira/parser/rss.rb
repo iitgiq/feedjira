@@ -1,6 +1,14 @@
 module Feedjira
 
   module Parser
+    class RSSImage
+      include SAXMachine
+      include FeedUtilities
+      element :url
+      element :title
+      element :link
+    end
+
     # Parser for dealing with RSS feeds.
     class RSS
       include SAXMachine
@@ -9,7 +17,7 @@ module Feedjira
       element :title
       element :description
       element :link, :as => :url
-      element :image
+      element :image, :class => RSSImage
       elements :item, :as => :entries, :class => RSSEntry
       elements :"atom:link", :as => :hubs, :value => :href, :with => {:rel => "hub"}
 
@@ -19,7 +27,6 @@ module Feedjira
         (/\<rss|\<rdf/ =~ xml) && !(/feedburner/ =~ xml)
       end
     end
-
   end
 
 end
