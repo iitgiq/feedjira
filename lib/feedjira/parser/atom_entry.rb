@@ -27,6 +27,14 @@ module Feedjira
       def url
         @url ||= links.first
       end
+
+      def summary_image
+        Loofah.xml_fragment(self.summary).xpath('.//img').map{|n|n.get_attribute('src')}.find_all{|src|src}.first
+      end
+
+      def content_image
+        Loofah.xml_fragment(self.content).xpath('.//img').map{|n|n.get_attribute('src')}.find_all{|src|src}.first
+      end
     end
 
   end
