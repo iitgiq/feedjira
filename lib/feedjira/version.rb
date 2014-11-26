@@ -1,3 +1,3 @@
 module Feedjira
-  VERSION = '1.4.0.2'
+  VERSION = '1.4.0.3'
 end
